@@ -2,11 +2,10 @@
 name = "aftermath-rs"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-
+description = "Rust bindings for NVIDIA Aftermath, targeting Vulkan applications"
+license = "MIT"
+repository = "https://github.com/dust-engine/aftermath-rs"
+keywords = ["vulkan", "nvidia", "aftermath", "gpu", "ffi"]
 
 [build-dependencies]
 sysreq = "0"
