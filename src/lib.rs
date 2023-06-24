@@ -56,6 +56,7 @@ impl Drop for Aftermath {
     }
 }
 
+#[derive(Debug, PartialEq, Eq)]
 pub enum Status {
     NotStarted = 0,
     CollectingData,
@@ -72,6 +73,17 @@ impl Status {
             let status = status as u8;
             std::mem::transmute(status)
         }
+    }
+    pub fn wait_for_status(timeout: Option<std::time::Duration>) -> Self {
+        let mut status = Self::get();
+        let delta = std::time::Duration::from_millis(50);
+        let mut time = std::time::Duration::new(0, 0);
+        while status != Status::CollectingDataFailed && status != Status::Finished && timeout.map_or(true, |t| time < t) {
+            std::thread::sleep(delta);
+            time += delta;
+            status = Self::get();
+        }
+        status
     }
 }
 
