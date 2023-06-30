@@ -78,7 +78,10 @@ impl Status {
         let mut status = Self::get();
         let delta = std::time::Duration::from_millis(50);
         let mut time = std::time::Duration::new(0, 0);
-        while status != Status::CollectingDataFailed && status != Status::Finished && timeout.map_or(true, |t| time < t) {
+        while status != Status::CollectingDataFailed
+            && status != Status::Finished
+            && timeout.map_or(true, |t| time < t)
+        {
             std::thread::sleep(delta);
             time += delta;
             status = Self::get();
