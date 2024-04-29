@@ -1,5 +1,6 @@
 #![feature(ptr_metadata)]
 
+use std::ffi::CString;
 use std::{
     ffi::c_void,
     ptr::{from_raw_parts_mut, Pointee},
@@ -149,16 +150,19 @@ mod callbacks {
 pub struct DescriptionBuilder(sys::PFN_GFSDK_Aftermath_AddGpuCrashDumpDescription);
 impl DescriptionBuilder {
     pub fn set_application_name(&mut self, name: &str) {
+        let name = CString::new(name).unwrap();
         unsafe {
             (self.0)(1, name.as_ptr());
         }
     }
     pub fn set_application_version(&mut self, name: &str) {
+        let name = CString::new(name).unwrap();
         unsafe {
             (self.0)(2, name.as_ptr());
         }
     }
     pub fn set(&mut self, index: u32, name: &str) {
+        let name = CString::new(name).unwrap();
         unsafe {
             (self.0)(0x10000 + index, name.as_ptr());
         }

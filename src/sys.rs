@@ -1,7 +1,7 @@
 #![allow(non_upper_case_globals)]
 #![allow(non_camel_case_types)]
 
-use std::ffi::c_void;
+use std::ffi::{c_char, c_void};
 
 pub const GFSDK_Aftermath_Version_API: u32 = 0x0000214; // Version 2.20
 
@@ -22,7 +22,7 @@ pub type PFN_GFSDK_Aftermath_ResolveMarkerCb = unsafe extern "C" fn(
     marker_size: *mut u32,
 );
 pub type PFN_GFSDK_Aftermath_AddGpuCrashDumpDescription =
-    unsafe extern "C" fn(key: u32, value: *const u8);
+    unsafe extern "C" fn(key: u32, value: *const c_char);
 pub type PFN_GFSDK_Aftermath_GpuCrashDumpDescriptionCb = unsafe extern "C" fn(
     add_value: PFN_GFSDK_Aftermath_AddGpuCrashDumpDescription,
     p_user_data: *mut c_void,
