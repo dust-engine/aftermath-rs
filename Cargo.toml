@@ -1,6 +1,6 @@
 [package]
 name = "aftermath-rs"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 description = "Rust bindings for NVIDIA Aftermath, targeting Vulkan applications"
 license = "MIT"
